@@ -93,8 +93,22 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>properties</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.5.2</version>
+        <configuration>
+          <argLine>@{argLine} --sun-misc-unsafe-memory-access=allow -javaagent:${org.mockito:mockito-core:jar}</argLine>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
